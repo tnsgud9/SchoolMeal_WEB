@@ -16,16 +16,6 @@
         }
 
 
-        .today {
-            padding: 10px;
-            font-size: 45px;
-            background-color: aqua;
-            border-radius: 50px;
-            margin-top:-20px;
-        }
-
-        .tomorrow {}
-
         .title {
             position: relative;
             top: -20px;
@@ -49,38 +39,92 @@
             font-size: 20px;
             
         }
-        .middle{
+        
+        
+        
+        
+        
+        
+        .tomorrow{
             left: 50%;
             top: 50%;
             transform: translateX(-50%);
         }
-        .left
+        .today
         {
             top: 50%;
             margin-left: 90px;
         }
-        .right
+        
+        
+        
+        
+        .notice{
+            top: 5%;
+            right: 2%;
+            height: 350px;
+            width: 600px;
+            position: absolute;
+            background-color: aquamarine;
+        }
+        .contents
         {
-            
+            position: relative;
+            background-color: blue;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%,-50%);
+            height: 85%;
+            width: 90%;
+            font-size: 30px;
         }
     </style>
 
 
 </head>
 
+
+<script>
+    function Clock()
+    {
+        var clock=document.getElementById("clock");
+        var TimeDate=new Date();
+        
+        document.write(TimeDate);
+        setTimeout("Clock()",1000);  
+
+
+        
+    }
+    
+</script>
+
 <body>
-    <div class="main middle">
-       <div class="today">
+    <div class="main tomorrow">
+       <div class="title">
            내일의 급식
        </div>
         adfadsf
     </div>
     
     
-    <div class="main left">
-        <div class="today">
+    <div class="main today">
+        <div class="title">
             오늘의 급식
         </div>
+        <div class="center">
+            asdasd
+        </div>
+    </div>
+    
+    <div class="notice">
+       <div class="contents">
+           공지
+       </div>
+    </div>
+    
+    <div id="clock">
+        현재시각
     </div>
 
 </body>
