@@ -27,9 +27,9 @@
         }
 
         .main {
-            
+
             position: absolute;
-            
+
             height: 840px;
             width: 500px;
             margin-top: -415px;
@@ -37,29 +37,29 @@
             text-align: center;
             border-radius: 30px 30px 50px 50px;
             font-size: 20px;
-            
+
         }
-        
-        
-        
-        
-        
-        
-        .tomorrow{
+
+
+
+
+
+
+        .tomorrow {
             left: 50%;
             top: 50%;
             transform: translateX(-50%);
         }
-        .today
-        {
+
+        .today {
             top: 50%;
             margin-left: 90px;
         }
-        
-        
-        
-        
-        .notice{
+
+
+
+
+        .notice {
             top: 5%;
             right: 2%;
             height: 350px;
@@ -67,16 +67,19 @@
             position: absolute;
             background-color: aquamarine;
         }
-        .contents
-        {
+
+        .contents {
             position: relative;
             background-color: blue;
             left: 50%;
             top: 50%;
-            transform: translate(-50%,-50%);
+            transform: translate(-50%, -50%);
             height: 85%;
             width: 90%;
             font-size: 30px;
+        }
+        
+        #clock{
         }
     </style>
 
@@ -84,30 +87,39 @@
 </head>
 
 
-<script>
-    function Clock()
-    {
-        var clock=document.getElementById("clock");
-        var TimeDate=new Date();
-        
-        document.write(TimeDate);
-        setTimeout("Clock()",1000);  
-
-
-        
+<script type="text/javascript">
+    function time() {
+        var today = new Date();
+        var h = today.getHours();
+        var m = today.getMinutes();
+        var s = today.getSeconds();
+        var ampm = h<12?"am":"pm";
+        if(h>12)
+            h-=12;
+        m = check(m);
+        s = check(s);
+        document.getElementById('clock').innerHTML =
+            h + ":" + m + ":" + s + " "+ampm;
+        var t = setTimeout(time, 1000);
     }
-    
+
+    function check(i) {
+        if (i < 10) {
+            i = "0" + i;
+        }
+        return i;
+    }
 </script>
 
-<body>
+<body onload ="time()">
     <div class="main tomorrow">
-       <div class="title">
-           내일의 급식
-       </div>
+        <div class="title">
+            내일의 급식
+        </div>
         adfadsf
     </div>
-    
-    
+
+
     <div class="main today">
         <div class="title">
             오늘의 급식
@@ -116,13 +128,13 @@
             asdasd
         </div>
     </div>
-    
+
     <div class="notice">
-       <div class="contents">
-           공지
-       </div>
+        <div class="contents">
+            공지
+        </div>
     </div>
-    
+
     <div id="clock">
         현재시각
     </div>
