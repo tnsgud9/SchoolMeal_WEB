@@ -1,0 +1,32 @@
+{
+  "name": "node-school-kr",
+  "version": "2.1.0",
+  "description": "Node.js 기반 전국 교육청의 급식, 학사일정 API 라이브러리",
+  "main": "school.js",
+  "engines": {
+    "node": ">= 7.0.0"
+  },
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.2",
+    "cryptiles": "^4.1.3",
+    "request": "^2.86.0"
+  },
+  "scripts": {
+    "test": "node ./sample/sample.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/leegeunhyeok/node-school-kr.git"
+  },
+  "keywords": [
+    "school",
+    "meal",
+    "calendar"
+  ],
+  "author": "Leegeunhyeok",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/leegeunhyeok/node-school-kr/issues"
+  },
+  "homepage": "https://github.com/leegeunhyeok/node-school-kr#readme"
+}

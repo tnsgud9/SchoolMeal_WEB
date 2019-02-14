@@ -93,7 +93,6 @@
         }
     </style>
 
-
 </head>
 
 
@@ -107,7 +106,7 @@
         if (h > 12) h -= 12;
         m = check(m);
         s = check(s);
-        document.getElementsByClassName("clock")[0].innerHTML = h + ":" + m + ":" + s + " "+ampm;
+        document.getElementsByClassName("clock")[0].innerHTML = h + ":" + m + ":" + s + " " + ampm;
         var t = setTimeout(time, 1000);
     }
 
@@ -117,6 +116,15 @@
         }
         return i;
     }
+    
+    
+    
+    const School = require('./school.js');
+    const school = new School()
+    
+    //school.init(School.Type.4,School.Region.SEOUL,'B100000593');
+    //console.log(school.getMeal(2019,1));
+
 </script>
 
 <body onload="time()">
@@ -141,14 +149,14 @@
         <div class="contents">
             공지
         </div>
-        
+
         <div class="clock">
             현재시간
         </div>
     </div>
-    
-        
-    
+
+
+
 
 </body>
 
