@@ -1,0 +1,163 @@
+<!-- 송파공업고등학교 급식 웹 사이트 -->
+
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>SchoolMeal</title>
+
+
+    <style>
+        html {
+            height: 100%;
+            width: 100%;
+        }
+
+
+        .title {
+            position: relative;
+            top: -20px;
+            background-color: aqua;
+            text-align: center;
+            border-radius: 500px;
+            padding: 15px;
+            font-size: 40px;
+        }
+
+        .main {
+
+            position: absolute;
+
+            height: 840px;
+            width: 500px;
+            margin-top: -415px;
+            background-color: #b4b4b4;
+            text-align: center;
+            border-radius: 30px 30px 50px 50px;
+            font-size: 45px;
+            
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+
+
+
+
+
+        .tomorrow {
+            left: 50%;
+            top: 50%;
+            transform: translateX(-50%);
+        }
+
+        .today {
+            top: 50%;
+            margin-left: 90px;
+        }
+
+
+
+
+        .notice {
+            top: 5%;
+            right: 2%;
+            height: 350px;
+            width: 600px;
+            position: absolute;
+            background-color: aquamarine;
+        }
+
+        .contents {
+            position: relative;
+            background-color: blue;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            height: 85%;
+            width: 90%;
+            font-size: 30px;
+        }
+        
+        .clock{
+            
+            font-size: 100px;
+            background-color: aquamarine;
+            
+            margin-top: 430px;
+            text-align: center;
+            
+            
+        }
+    </style>
+
+</head>
+
+
+<script type="text/javascript">
+    function time() {
+        var today = new Date();
+        var h = today.getHours();
+        var m = today.getMinutes();
+        var s = today.getSeconds();
+        var ampm = h < 12 ? "AM" : "PM";
+        if (h > 12) h -= 12;
+        m = check(m);
+        s = check(s);
+        document.getElementsByClassName("clock")[0].innerHTML = h + ":" + m + ":" + s + " " + ampm;
+        var t = setTimeout(time, 1000);
+    }
+
+    function check(i) {
+        if (i < 10) {
+            i = "0" + i;
+        }
+        return i;
+    }
+    
+    
+    
+    const School = require('./school.js');
+    const school = new School()
+    
+    //school.init(School.Type.4,School.Region.SEOUL,'B100000593');
+    //console.log(school.getMeal(2019,1));
+
+</script>
+
+<body onload="time()">
+    <div class="main tomorrow">
+        <div class="title">
+            내일의 급식
+        </div>
+        adfadsf
+    </div>
+
+
+    <div class="main today">
+        <div class="title">
+            오늘의 급식
+        </div>
+        <div class="center">
+            asdasd
+        </div>
+    </div>
+
+    <div class="notice">
+        <div class="contents">
+            공지
+        </div>
+
+        <div class="clock">
+            현재시간
+        </div>
+    </div>
+
+
+
+
+</body>
+
+</html>
