@@ -29,7 +29,7 @@ $schulCrseScCode = $_GET['schulCrseScCode'];  // school levels code
 $schMmealScCode = $_GET['schMmealScCode'];    // meal kinds code
 $time = time();
 $today = date("Y.m.d");
-$schYmd = $today;
+$schYmd = "2019.03.26";
 
 $MENU_URL = "sts_sci_md01_001.do";            // view weekly table
 
@@ -64,24 +64,22 @@ if($cols->item($day)->nodeValue==null){
 
 // replace unnecessary characters
 
-$final=preg_replace("/[0-9]/", "", $final);
+$final=preg_replace("/[0-9]/", "1", $final);
 $final=str_replace(".", "1", $final);
-
-for($i=0;$i<mb_strlen($final,'utf-8')-1;$i++)
+$final=str_split($final);
+for($i=1;$i<count($final);$i++)
 {
-    if($final[i]==1)
+    if($final[$i-1]==1)
     {
-        if($final[i+1]!="1")
-            $final[i]="\n";
+        if($final[$i]!=1)
+            $final[$i-1]="\n";
         else
-            $final[i]="";
-        echo "걸림";
+            $final[$i-1]="";
     }
-    else
-        echo"error \n";
 }
+$final[count($final)-1]="";
 
-
+$final=implode($final);
 // change code number to text
 if($schulCrseScCode==1){
     $schulCrseScCode="유치원";
