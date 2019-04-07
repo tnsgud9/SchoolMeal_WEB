@@ -22,11 +22,11 @@ header("Content-type: application/json; charset=UTF-8");        // json type and
 
 require "simple_html_dom.php";                // use 'simple_html_dom.php'
 
-$countryCode = $_GET['countryCode'];          // local office of education website
-$schulCode =  $_GET['schulCode'];             // school code
-$insttNm = $_GET['insttNm'];                  // school name
-$schulCrseScCode = $_GET['schulCrseScCode'];  // school levels code
-$schMmealScCode = $_GET['schMmealScCode'];    // meal kinds code
+$countryCode = "stu.sen.go.kr";          // local office of education website
+$schulCode =  "B100000593";             // school code
+$insttNm ="송파공업고등학교";                  // school name
+$schulCrseScCode =4;  // school levels code
+$schMmealScCode = 2;    // meal kinds code
 $time = time();
 $time=strtotime("+1 day", $time);
 $tomorrow = date("Y.m.d", strtotime("+9 hours", $time));
@@ -124,7 +124,7 @@ $fp = fopen('meal_tomorrow.json', 'w');
 fwrite($fp, json_encode($array, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT));
 fclose($fp);
 echo $final;
-//Header("Location:../index.html")
+Header("Location:../index.html");
 
 ?>
 
