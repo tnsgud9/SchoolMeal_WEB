@@ -50,8 +50,10 @@
 
 </head>
 
-
+<script src="jQuery3.3.1.js"></script>
 <script type="text/javascript">
+
+
     function time() {
         var today = new Date();
         var h = today.getHours();
@@ -71,7 +73,32 @@
         }
         return i;
     }
+
+
+    var menu;
+    $(document).ready(function () {
+        $.getJSON('meal_today.json', function (data) {
+            console.log(data.메뉴);
+            menu=data.메뉴;
+
+        })
+
+    })
+
+
+
 </script>
+
+
+<!--
+        $.getJSON('meal_today.json', function (data) {
+            console.log("it Worked");
+        })
+    //$.getJSON('meal_today.json',function (data) {
+    //    console.log("IT worked!");
+    //})
+
+    -->
 <!--
     //학교 코드: B100000593
     //http://localhost/meal_api_today.php?countryCode=stu.sen.go.kr&schulCode=B100000593&insttNm=송파공업고등학교&schulCrseScCode=4&schMmealScCode=2
@@ -80,7 +107,7 @@
 -->
 <body onload="time()">
 
-   
+
    
     <div class="clock">
         현재시간
@@ -88,7 +115,7 @@
     
     <div class="today food">
         오늘의 급식
-        <p style="font-size: 40px">
+        <p id="todayJSON" style="font-size: 40px">
             오늘 급식 리스트<br>내용들
         </p>
         
