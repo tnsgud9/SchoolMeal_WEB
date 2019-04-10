@@ -65,6 +65,7 @@
         s = check(s);
         document.getElementsByClassName("clock")[0].innerHTML = h + ":" + m + ":" + s + " " + ampm;
         var t = setTimeout(time, 1000);
+
     }
 
     function check(i) {
@@ -80,6 +81,8 @@
         $.getJSON('meal_today.json', function (data) {
             console.log(data.메뉴);
             menu=data.메뉴;
+            document.getElementById("todayJSON").innerHTML = data.메뉴;
+
 
         })
 
