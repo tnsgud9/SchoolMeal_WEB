@@ -73,7 +73,7 @@ for($i=1;$i<count($final);$i++)
     if($final[$i-1]==1)
     {
         if($final[$i]!=1)
-            $final[$i-1]="\n";
+            $final[$i-1]="<br>";
         else
             $final[$i-1]="";
     }
@@ -107,7 +107,7 @@ if($schMmealScCode==3){
 if($final==null&&$final=="")
 {
     echo "내일 급식 정보가 없습니다.!";
-    $final="내일 급식 정보가 없습니다.!";
+    $final="내일 급식이 없습니다. <br>내일 급식 정보가 없습니다.";
 }
 
 // array
