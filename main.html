@@ -1,0 +1,173 @@
+<!-- 송파공업고등학교 급식 웹 사이트 -->
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="Fonts\NanumSquare\nanumsquare.css">
+    <link rel="stylesheet" type="text/css" href="Fonts\NanumSquareRound\nanumsquareround.css">
+    <link rel="stylesheet" type="text/css" href="css/animation/animate.css">
+    <link rel="stylesheet" type="text/css" href="css/animation/Custom.css">
+
+
+    <title>SchoolMeal</title>
+
+
+
+    <style>
+        html {
+            overflow: hidden;
+            height: 100%;
+            width: 100%;
+            margin: -10px;
+            padding: -10px;
+            background: url(background.jpg) no-repeat center center fixed;
+            background-size: cover;
+        }
+
+        body{
+            font-family: 'NanumSquare',sans-serif;
+        }
+
+
+
+        .clock{
+            font-size: 120px;
+            font-weight: 900;
+            color: white;
+            text-align: right ;
+            margin-top: 13px;
+            margin-right: 10px;
+            text-shadow: 0 0 10px black;
+        }
+
+        .food{
+            font-family: 'NanumSquareRound',sans-serif;
+            background-color: rgba( 255, 255, 255, 0.600 );
+            width: 70%;
+            height: 600px;
+            transform: translate(20%,11%);
+            text-align: center;
+            font-size: 95px;
+            padding-top : 30px;
+            border-radius: 50px;
+            font-weight: 900;
+        }
+        .notice{
+            transform: translateY(189%);
+            width: 101%;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            font-size: 60px;
+            background-color: rgba( 255, 255, 255, 0.600 );
+        }
+    </style>
+
+</head>
+
+<script src="jQuery3.3.1.js"></script>
+<script type="text/javascript">
+
+
+    //현재 시간
+    function time() {
+        var today = new Date();
+        var h = today.getHours();
+        var m = today.getMinutes();
+        var s = today.getSeconds();
+        var ampm = h < 12 ? "AM" : "PM";
+        if (h > 12) h -= 12;
+        m = check(m);
+        s = check(s);
+        document.getElementsByClassName("clock")[0].innerHTML = h + ":" + m + ":" + s + " " + ampm;
+        var t = setTimeout(time, 1000);
+
+    }
+
+    function check(i) {
+        if (i < 10) {
+            i = "0" + i;
+        }
+        return i;
+    }
+
+
+    
+    //todayJSON 가져오기
+    $(document).ready(function () {
+        $.getJSON('meal_today.json', function (data) {
+            console.log(data.메뉴);
+            document.getElementById("todayJSON").innerHTML = data.메뉴;
+        })
+
+        $.getJSON('meal_tomorrow.json', function (data) {
+            console.log(data.메뉴);
+            document.getElementById("tomorrowJSON").innerHTML = data.메뉴;
+        })
+        document.getElementById("tomorrow").style.display="none";
+    })
+    setInterval(mealScene,1000);
+
+    var second=0;
+    function mealScene() {
+        second+=1;
+        console.log(second);
+
+        if(second==40)
+        {
+            document.getElementById("today").style.display="block";
+            document.getElementById("tomorrow").style.display="none";
+            second=0;
+        }
+        else if(second==20)
+        {
+            document.getElementById("today").style.display="none";
+            document.getElementById("tomorrow").style.display="block";
+        }
+    }
+
+
+</script>
+
+<!--
+    //학교 코드: B100000593
+    //http://localhost/meal_api_today.php?countryCode=stu.sen.go.kr&schulCode=B100000593&insttNm=송파공업고등학교&schulCrseScCode=4&schMmealScCode=2
+    //school.init(School.Type.4,School.Region.SEOUL,'B100000593');
+    //console.log(school.getMeal(2019,1));
+-->
+<body onload="time()">
+
+
+
+    <div class="clock">
+        현재시간
+    </div>
+
+    <div id="today">
+      <div class="animated fadeIn food ">
+        오늘의 급식
+        <p id="todayJSON" style=" font-size: 40px; line-height: 65px">
+          오늘 급식 리스트<br> 오늘 급식에 대한 정보가 없습니다!
+        </p>
+      </div>
+    </div>
+
+    <div id="tomorrow">
+        <div class=" animated fadeIn  food">
+            내일의 급식
+            <p id=" tomorrowJSON" style="font-size: 40px; line-height: 65px">
+                내일 급식 정보가 없습니다.
+            </p>
+        </div>
+    </div>
+
+    <div class="notice">
+        알림창 돌아가게
+
+    </div>
+
+</body>
+
+</html>

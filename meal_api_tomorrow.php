@@ -107,7 +107,7 @@ if($schMmealScCode==3){
 if($final==null&&$final=="")
 {
     echo "내일 급식 정보가 없습니다.!";
-    $final="내일 급식이 없습니다. <br>내일 급식 정보가 없습니다.";
+    $final="내일 급식이 없습니다. <br> 내일 급식 정보가 없습니다.";
 }
 
 // array
@@ -124,7 +124,7 @@ $fp = fopen('meal_tomorrow.json', 'w');
 fwrite($fp, json_encode($array, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT));
 fclose($fp);
 echo $final;
-Header("Location:../index.html");
+Header("Location:../main.html");
 
 ?>
 

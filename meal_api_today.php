@@ -123,7 +123,7 @@ $fp = fopen('meal_today.json', 'w');
 fwrite($fp, json_encode($array, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT));
 fclose($fp);
 echo $final;
-Header("Location:../meal_api_tomorrow.php?");
+Header("Location:../meal_api_tomorrow.php");
 
 ?>
 
