@@ -3,6 +3,7 @@
 
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0">
@@ -27,50 +28,52 @@
             background-size: cover;
         }
 
-        body{
-            font-family: 'NanumSquare',sans-serif;
+        body {
+            font-family: 'NanumSquare', sans-serif;
         }
 
 
 
-        .clock{
+        .clock {
             font-size: 120px;
             font-weight: 900;
             color: white;
-            text-align: right ;
+            text-align: right;
             margin-top: 13px;
             margin-right: 10px;
             text-shadow: 0 0 10px black;
         }
 
-        .food{
-            font-family: 'NanumSquareRound',sans-serif;
-            background-color: rgba( 255, 255, 255, 0.600 );
+        .food {
+            font-family: 'NanumSquareRound', sans-serif;
+            background-color: rgba(255, 255, 255, 0.600);
             width: 70%;
             height: 600px;
-            transform: translate(20%,11%);
+            transform: translate(20%, 11%);
             text-align: center;
             font-size: 95px;
-            padding-top : 30px;
+            padding-top: 30px;
             border-radius: 50px;
             font-weight: 900;
         }
-        .notice{
-            transform: translateY(189%);
+
+        .notice {
+            transform: translateY(300%);
             width: 101%;
             padding-top: 10px;
             padding-bottom: 10px;
             font-size: 60px;
-            background-color: rgba( 255, 255, 255, 0.600 );
+            background-color: rgba(255, 255, 255, 0.600);
         }
-    </style>
 
+    </style>
+    <!--
+ transform: translateY(189%);
+ -->
 </head>
 
 <script src="jQuery3.3.1.js"></script>
 <script type="text/javascript">
-
-
     //현재 시간
     function time() {
         var today = new Date();
@@ -94,40 +97,46 @@
     }
 
 
-    
+
     //todayJSON 가져오기
-    $(document).ready(function () {
-        $.getJSON('meal_today.json', function (data) {
+    $(document).ready(function() {
+        $.getJSON('meal_today.json', function(data) {
             console.log(data.메뉴);
             document.getElementById("todayJSON").innerHTML = data.메뉴;
         })
 
-        $.getJSON('meal_tomorrow.json', function (data) {
+        $.getJSON('meal_tomorrow.json', function(data) {
             console.log(data.메뉴);
             document.getElementById("tomorrowJSON").innerHTML = data.메뉴;
         })
-        document.getElementById("tomorrow").style.display="none";
+        document.getElementById("tomorrow").style.display = "none";
     })
-    setInterval(mealScene,1000);
+    setInterval(mealScene, 1000);
 
-    var second=0;
+    var second = 0;
+    var count = -1;
+    var ID = [
+        "today",
+        "tomorrow"
+    ];
+
     function mealScene() {
-        second+=1;
+        second++;
         console.log(second);
 
-        if(second==40)
-        {
-            document.getElementById("today").style.display="block";
-            document.getElementById("tomorrow").style.display="none";
-            second=0;
-        }
-        else if(second==20)
-        {
-            document.getElementById("today").style.display="none";
-            document.getElementById("tomorrow").style.display="block";
+        if (second % 20 == 0) {
+            if (count < ID.length - 1) count++;
+            else count = 0;
+            blind();
+            document.getElementById(ID[count]).style.display = "none";
+            console.log(count);
         }
     }
 
+    var blind = function allBlind() {
+        for (var tmp1 = 0; tmp1 < ID.length; tmp1++)
+            document.getElementById(ID[tmp1]).style.display = "block";
+    }
 
 </script>
 
@@ -137,6 +146,7 @@
     //school.init(School.Type.4,School.Region.SEOUL,'B100000593');
     //console.log(school.getMeal(2019,1));
 -->
+
 <body onload="time()">
 
 
@@ -146,25 +156,29 @@
     </div>
 
     <div id="today">
-      <div class="animated fadeIn food ">
-        오늘의 급식
-        <p id="todayJSON" style=" font-size: 40px; line-height: 65px">
-          오늘 급식 리스트<br> 오늘 급식에 대한 정보가 없습니다!
-        </p>
-      </div>
+        <div class="animated fadeIn food ">
+            오늘의 급식
+            <p id="todayJSON" style=" font-size: 60px; line-height: 80px">
+                오늘 급식 리스트<br> 오늘 급식에 대한 정보가 없습니다!
+            </p>
+        </div>
     </div>
 
     <div id="tomorrow">
         <div class=" animated fadeIn  food">
             내일의 급식
-            <p id=" tomorrowJSON" style="font-size: 40px; line-height: 65px">
+            <p id="tomorrowJSON" style="font-size: 60px; line-height: 80px">
                 내일 급식 정보가 없습니다.
             </p>
         </div>
     </div>
-
-    <div class="notice">
-        알림창 돌아가게
+    
+    <div id="employInfo">
+        
+    </div>
+   
+    <div class="notice" style="font-size:30px; text-align: center">
+        송파공고 급식보드 v2.1 - 요청 및 건의는 영양실로 와주세요.
 
     </div>
 
