@@ -97,6 +97,13 @@
     }
 
 
+    var second = 0;
+    var count = -1;
+    var ID = [
+        "today",
+        "tomorrow",
+        "survey"
+    ];
 
     //todayJSON 가져오기
     $(document).ready(function() {
@@ -109,16 +116,11 @@
             console.log(data.메뉴);
             document.getElementById("tomorrowJSON").innerHTML = data.메뉴;
         })
-        document.getElementById("tomorrow").style.display = "none";
+        blind();
+        
     })
     setInterval(mealScene, 1000);
 
-    var second = 0;
-    var count = -1;
-    var ID = [
-        "today",
-        "tomorrow"
-    ];
 
     function mealScene() {
         second++;
@@ -128,14 +130,16 @@
             if (count < ID.length - 1) count++;
             else count = 0;
             blind();
-            document.getElementById(ID[count]).style.display = "none";
+            document.getElementById(ID[count]).style.display = "block";
             console.log(count);
+            
+            document.getElementById(ID[tmp1]).style.display = "none";
         }
     }
 
     var blind = function allBlind() {
         for (var tmp1 = 0; tmp1 < ID.length; tmp1++)
-            document.getElementById(ID[tmp1]).style.display = "block";
+            document.getElementById(ID[tmp1]).style.display = "none";
     }
 
 </script>
@@ -169,6 +173,19 @@
             내일의 급식
             <p id="tomorrowJSON" style="font-size: 60px; line-height: 80px">
                 내일 급식 정보가 없습니다.
+            </p>
+        </div>
+    </div>
+    
+    <div id="survey">
+        <div class= " animated fadeIn food">
+            급식실 TV 개선 및 의견
+            <p style="font-size: 50px; line-height: 80px">
+                <img src="image/QR.png" alt = "설문 아이콘"  width="350" align="left" style="padding-left: 150px">
+                급식실TV 컨텐츠 건의 및 의견에 대한 <br>
+                설문을 진행 중 입니다.<br>
+                위 링크를 통해 참여 해주세요.<br>
+                참여URL : http://bitly.kr/meal
             </p>
         </div>
     </div>
